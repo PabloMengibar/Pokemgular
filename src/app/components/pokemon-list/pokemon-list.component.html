@@ -8,11 +8,14 @@
     <h2 class="pokemon-name">{{ pokemon.name | titlecase }}</h2>
     <div>
         <ol class="type-pills">
-            <li *ngFor="let type of pokemon.types" class="pill" [ngClass]="type.type.name">{{type.type.name | uppercase}}</li>
+            @for (type of pokemon.types; track $index) {
+            <li  class="pill" [ngClass]="type.type.name">{{type.type.name | uppercase}}</li>
+            }
         </ol>
     </div>
     <button class="details-btn" (click)="navegate(pokemon)">Details</button>
 </a>
 </div>
+
 
 </div>

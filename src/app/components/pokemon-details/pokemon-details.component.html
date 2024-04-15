@@ -1,9 +1,11 @@
-<div *ngIf="loading" class="loading">
+@if(loading){
+<div class="loading">
     <h5>Loading...</h5>
   </div>
+}
   <button routerLink="" class="back-button">&larr;</button>
-
-  <div *ngIf="!loading" class="pokemon-details">
+  @if(!loading){
+  <div class="pokemon-details">
     <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
 
     <div class="card">
@@ -23,35 +25,37 @@
         <div class="types">
             <div class="type-title">Type</div>
             <div class="type-pills">
-              <span *ngFor="let type of pokemon?.types" class="pill" [ngClass]="type.type.name">
+              @for (type of pokemon?.types; track $index) {
+              <span class="pill" [ngClass]="type.type.name">
                 {{ type.type.name | uppercase }}
               </span>
+            }
             </div>
           </div>
         <div class="attributes">
           <div class="attribute-block">
             <div class="attribute-title">Height</div>
-            <div class="attribute-value">{{ pokemon?.height }}</div>
+            <span class="attribute-value">{{ pokemon?.height }}</span>
           </div>
           <div class="attribute-block">
             <div class="attribute-title">Weight</div>
-            <div class="attribute-value">{{ pokemon?.weight }}</div>
+            <span class="attribute-value">{{ pokemon?.weight }}</span>
           </div>
         </div>
   
         <div class="stats-container">
           <ul class="stats-list">
-            <li *ngFor="let stat of pokemon?.stats">
+            @for (stat of pokemon?.stats; track $index) {
+            <li>
               <span class="stat-name">{{ stat.stat.name | uppercase }}</span>
               <div class="stat-bar-outer">
                 <div class="stat-bar-inner" [style.width]="(stat.base_stat / 120) * 100 + '%'"></div>
               </div>
             </li>
+          }
           </ul>
         </div>
-  
-        
       </div>
     </div>
   </div>
-  
+}
