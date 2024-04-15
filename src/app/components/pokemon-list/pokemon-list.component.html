@@ -1,0 +1,18 @@
+    <app-search-bar (searchTextChange)="onSearchTextChange($event)"></app-search-bar>
+<div class="pokedex">
+    <div class="card" *ngFor="let pokemon of pokemonList | search: searchText">
+        <a (click)="navegate(pokemon)">
+        <img src="{{pokemon.sprites.front_default}}" alt="{{pokemon.name}}" class="pokemon-image"> 
+
+    <p class="pokemon-id">N.º {{pokemon.id}}</p>
+    <h2 class="pokemon-name">{{ pokemon.name | titlecase }}</h2>
+    <div>
+        <ol class="type-pills">
+            <li *ngFor="let type of pokemon.types" class="pill" [ngClass]="type.type.name">{{type.type.name | uppercase}}</li>
+        </ol>
+    </div>
+    <button class="details-btn" (click)="navegate(pokemon)">Details</button>
+</a>
+</div>
+
+</div>

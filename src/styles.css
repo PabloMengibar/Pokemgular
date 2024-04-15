@@ -1,1 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+
+:root {
+    font-family: "Pixelify Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+  }
+
+  body{
+    background-color: #151329;
+}
+
+.pill {
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-right: 5px;
+  font-size: 14px;
+  color: #fff;
+}
+.fire {
+  background-color: #f08030;
+}
+.normal {
+  background-color: #a4acaf;
+  color:#212121;
+}
+.water {
+  background-color: #6890f0;
+}
+.fairy{
+  background-color: #fdb9e9;
+  color:#212121;
+}
+.steel{
+  background-color: #9eb7b8;
+  color:#212121;
+}
+
+.electric {
+  background-color: #f8d030;
+  color: #212121;
+}
+
+.grass {
+  background-color: #78c850;
+}
+
+.ice {
+  background-color: #98d8d8;
+  color: #212121;
+}
+
+.fighting {
+  background-color: #c03028;
+}
+
+.poison {
+  background-color: #a040a0;
+}
+
+.ground {
+  background-color: #e0c068;
+  color: #212121;
+}
+
+.flying {
+  background-color: #a890f0;
+}
+
+.psychic {
+  background-color: #f85888;
+}
+
+.bug {
+  background-color: #a8b820;
+}
+
+.rock {
+  background-color: #b8a038;
+}
+
+.ghost {
+  background-color: #705898;
+}
+
+.dragon {
+  background-color: #7038f8;
+  
+}

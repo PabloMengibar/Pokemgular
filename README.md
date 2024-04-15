@@ -1,6 +1,25 @@
-# Pokemgular
+# Pokémgular
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.1.
+
+Pokémgular is a web application that shows a list of the national pokedex with the first 151 pokémons, has a section where the details of each pokémon are shown and has a filter to search for them by name.
+ 
+## How to start the project
+
+This project has been developed with :
+Angular CLI: 17.3.4
+Node: 20.11.0
+Package Manager: npm 10.4.0
+
+To install Angular CLI globally, run the following command:
+
+`npm install -g @angular/cli`
+
+`git clone` of the repository
+
+`npm install`
+
+`ng serve`
 
 ## Development server
 
