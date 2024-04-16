@@ -1,61 +1,63 @@
 @if(loading){
 <div class="loading">
-    <h5>Loading...</h5>
-  </div>
+  <h5>Loading...</h5>
+</div>
 }
-  <button routerLink="" class="back-button">&larr;</button>
-  @if(!loading){
-  <div class="pokemon-details">
-    <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
+@if(errorMessage){
+<div class="error">
+  <h5>{{errorMessage}}</h5>
+</div>
+}
+<button routerLink="" class="back-button">&larr;</button>
+@if(!loading){
+<div class="pokemon-details">
+  <h1 class="pokemon-name">{{ pokemon?.name | titlecase }}</h1>
 
-    <div class="card">
-      
-        <div class="pokemon-image-container">
-            <img [src]="sprites[currentImageIndex].url" alt="{{ pokemon?.name }}" class="pokemon-image">
-            <div class="thumbnails">
-              <img *ngFor="let sprite of sprites; let i = index" 
-                   [src]="sprite.url" 
-                   (click)="setActiveSlide(i)" 
-                   [class.active-thumbnail]="sprite.active" 
-                   alt="Thumbnail of {{ pokemon?.name }}" class="thumbnail">
-            </div>
-          </div>
-  
-      <div class="pokemon-info">
-        <div class="types">
-            <div class="type-title">Type</div>
-            <div class="type-pills">
-              @for (type of pokemon?.types; track $index) {
-              <span class="pill" [ngClass]="type.type.name">
-                {{ type.type.name | uppercase }}
-              </span>
-            }
-            </div>
-          </div>
-        <div class="attributes">
-          <div class="attribute-block">
-            <div class="attribute-title">Height</div>
-            <span class="attribute-value">{{ pokemon?.height }}</span>
-          </div>
-          <div class="attribute-block">
-            <div class="attribute-title">Weight</div>
-            <span class="attribute-value">{{ pokemon?.weight }}</span>
-          </div>
-        </div>
-  
-        <div class="stats-container">
-          <ul class="stats-list">
-            @for (stat of pokemon?.stats; track $index) {
-            <li>
-              <span class="stat-name">{{ stat.stat.name | uppercase }}</span>
-              <div class="stat-bar-outer">
-                <div class="stat-bar-inner" [style.width]="(stat.base_stat / 120) * 100 + '%'"></div>
-              </div>
-            </li>
+  <div class="card">
+
+    <div class="pokemon-image-container">
+      <img [src]="sprites[currentImageIndex].url" alt="{{ pokemon?.name }}" class="pokemon-image">
+      <div class="thumbnails">
+        <img *ngFor="let sprite of sprites; let i = index" [src]="sprite.url" (click)="setActiveSlide(i)"
+          [class.active-thumbnail]="sprite.active" alt="Thumbnail of {{ pokemon?.name }}" class="thumbnail">
+      </div>
+    </div>
+
+    <div class="pokemon-info">
+      <div class="types">
+        <div class="type-title">Type</div>
+        <div class="type-pills">
+          @for (type of pokemon?.types; track $index) {
+          <span class="pill" [ngClass]="type.type.name">
+            {{ type.type.name | uppercase }}
+          </span>
           }
-          </ul>
         </div>
+      </div>
+      <div class="attributes">
+        <div class="attribute-block">
+          <div class="attribute-title">Height</div>
+          <span class="attribute-value">{{ pokemon?.height }}</span>
+        </div>
+        <div class="attribute-block">
+          <div class="attribute-title">Weight</div>
+          <span class="attribute-value">{{ pokemon?.weight }}</span>
+        </div>
+      </div>
+
+      <div class="stats-container">
+        <ul class="stats-list">
+          @for (stat of pokemon?.stats; track $index) {
+          <li>
+            <span class="stat-name">{{ stat.stat.name | uppercase }}</span>
+            <div class="stat-bar-outer">
+              <div class="stat-bar-inner" [style.width]="(stat.base_stat / 120) * 100 + '%'"></div>
+            </div>
+          </li>
+          }
+        </ul>
       </div>
     </div>
   </div>
+</div>
 }

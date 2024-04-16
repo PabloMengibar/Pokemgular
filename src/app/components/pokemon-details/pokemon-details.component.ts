@@ -15,6 +15,7 @@ import { RouterLink } from '@angular/router';
 export class PokemonDetailsComponent implements OnInit {
   currentImageIndex = 0;
   loading: boolean = true;
+  errorMessage: string = ''
   public pokemon?: IPokemon;
   sprites: { url: string, active: boolean }[] = [];
 
@@ -24,20 +25,13 @@ export class PokemonDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.pokeDetails();
   }
-  
+
   pokeDetails(): void {
     this._route.params.subscribe(params => {
       this._apiService.getPokemon(params['name']).subscribe({
         next: (res: IPokemon) => {
           this.pokemon = {
-            name: res.name,
-            id: res.id,
-            sprites: res.sprites,
-            types: res.types,
-            stats: res.stats,
-            abilities: res.abilities,
-            weight: res.weight,
-            height: res.height
+            ...res
           };
           this.loading = false;
           this.sprites = [
@@ -48,6 +42,7 @@ export class PokemonDetailsComponent implements OnInit {
           ];
         },
         error: (err) => {
+          this.errorMessage = 'Failed to fetch a pokemon detail'
           console.error('Failed to fetch a pokemon detail:', err);
         }
       });

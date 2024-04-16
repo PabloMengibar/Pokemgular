@@ -19,7 +19,7 @@ import { catchError, switchMap } from 'rxjs/operators';
 export class PokemonListComponent implements OnInit {
   pokemonList: IPokemon[] = [];
   searchText: string = '';
-
+  error: string = '';
   private _apiService = inject(ApiService);
   private _router = inject(Router);
 
@@ -30,20 +30,23 @@ export class PokemonListComponent implements OnInit {
   pokeInfo(): void {
     this._apiService.getPokemonList().pipe(
       catchError(err => {
+        this.error = 'Failed to fetch pokemon list'
         console.error('Failed to fetch pokemon list:', err);
-        return of({ results: [] }); 
+        return of({ results: [] });
       }),
       switchMap(res => forkJoin(
         res.results.map(pkm => this._apiService.getPokemon(pkm.name).pipe(
           catchError(err => {
+            this.error = 'Failed to fetch details for pokemon'
             console.error('Failed to fetch details for pokemon:', err);
-            return of(null); 
+            return of(null);
           })
         ))
       )),
       catchError(err => {
+        this.error = 'Error while fetching all pokemons'
         console.error('Error while fetching all pokemons:', err);
-        return of([]); 
+        return of([]);
       })
     ).subscribe({
       next: (pokemonDetails: (IPokemon | null)[]) => {
@@ -51,7 +54,7 @@ export class PokemonListComponent implements OnInit {
           name: res!.name,
           id: res!.id,
           sprites: res!.sprites,
-          types: res!.types.map(t => ({ slot: t.slot, type: t.type })), 
+          types: res!.types.map(t => ({ slot: t.slot, type: t.type })),
           stats: res!.stats,
           abilities: res!.abilities,
           weight: res!.weight,
@@ -65,6 +68,10 @@ export class PokemonListComponent implements OnInit {
 
   onSearchTextChange($event: string): void {
     this.searchText = $event;
+  }
+
+  handleError(message: string): void {
+    this.error = message;
   }
 
   navegate(pokemon: IPokemon): void {

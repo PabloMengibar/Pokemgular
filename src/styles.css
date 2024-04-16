@@ -86,3 +86,8 @@
   background-color: #7038f8;
   
 }
+.error {
+  text-align: center;
+  font-size: 1.8rem;
+  color: #fff;
+}
