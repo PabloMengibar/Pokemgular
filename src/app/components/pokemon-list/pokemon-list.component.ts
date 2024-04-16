@@ -70,10 +70,6 @@ export class PokemonListComponent implements OnInit {
     this.searchText = $event;
   }
 
-  handleError(message: string): void {
-    this.error = message;
-  }
-
   navegate(pokemon: IPokemon): void {
     this._router.navigate(['/pokemon', pokemon.name]);
   }
